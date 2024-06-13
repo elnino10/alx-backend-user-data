@@ -45,7 +45,7 @@ class DB:
         args:
             kwargs: dictionary of attributes to search for
         """
-        user = self._session.query(User).filter_by(**kwargs).first()
+        user = self._session.query(User).filter_by(**kwargs).one()
         if not user:
             raise NoResultFound
         if not isinstance(kwargs, dict):
