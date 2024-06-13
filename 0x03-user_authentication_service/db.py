@@ -45,11 +45,11 @@ class DB:
         args:
             kwargs: dictionary of attributes to search for
         """
+        if not isinstance(kwargs, dict) or not kwargs:
+            raise InvalidRequestError
         user = self._session.query(User).filter_by(**kwargs).one()
         if not user:
             raise NoResultFound
-        if not isinstance(kwargs, dict):
-            raise InvalidRequestError
         return user
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
