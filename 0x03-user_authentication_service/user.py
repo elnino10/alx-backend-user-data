@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" user class """
+""" user class module """
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
@@ -8,7 +8,10 @@ Base = declarative_base()
 
 
 class User(Base):
-    """user class inherits from declarative_base"""
+    """user class inherits from declarative_base
+    args:
+        Base: declarative_base class
+    """
 
     __tablename__ = "users"
 
