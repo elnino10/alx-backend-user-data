@@ -31,14 +31,21 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """adds a user to the database"""
+        """adds a user to the database
+        args:
+            email: email of the user
+            hashed_password: hashed password of the user
+        """
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
         return new_user
 
     def find_user_by(self, **kwargs: Dict) -> User:
-        """returns first row found in users or raise exceptions"""
+        """returns first row found in users or raise exceptions
+        args:
+            kwargs: dictionary of attributes to search for
+        """
         try:
             return self._session.query(User).filter_by(**kwargs).first()
         except NoResultFound:
@@ -47,7 +54,11 @@ class DB:
             raise InvalidRequestError
 
     def update_user(self, user_id: int, **kwargs: Dict) -> None:
-        """update user attribute"""
+        """update user attribute
+        args:
+            user_id: user id
+            kwargs: dictionary of attributes to update
+        """
         user = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
             setattr(user, key, value)
