@@ -52,7 +52,7 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user(self, user_id, **kwargs) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """update user attribute
         args:
             user_id: user id
@@ -60,9 +60,8 @@ class DB:
         """
         if not kwargs or not user_id:
             raise ValueError
-
         user = self.find_user_by(id=user_id)
-        if not user:
+        if not user or kwargs not in user:
             raise ValueError
         for key, value in kwargs.items():
             setattr(user, key, value)
