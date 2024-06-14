@@ -62,6 +62,8 @@ class DB:
             raise ValueError
 
         user = self.find_user_by(id=user_id)
+        if not user:
+            raise ValueError
         for key, value in kwargs.items():
             setattr(user, key, value)
         self._session.commit()
