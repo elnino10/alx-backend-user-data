@@ -52,7 +52,7 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user(self, user_id: int, **kwargs) -> None:
+    def update_user(self, user_id, **kwargs) -> None:
         """update user attribute
         args:
             user_id: user id
