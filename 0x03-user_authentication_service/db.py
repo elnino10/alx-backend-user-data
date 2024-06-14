@@ -40,13 +40,11 @@ class DB:
         self._session.commit()
         return new_user
 
-    def find_user_by(self, *args, **kwargs: Dict) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """returns first row found in users or raise exceptions
         args:
             kwargs: dictionary of attributes to search for
         """
-        if args:
-            raise InvalidRequestError
         if not kwargs or not isinstance(kwargs, dict):
             raise InvalidRequestError
         user = self._session.query(User).filter_by(**kwargs).first()
